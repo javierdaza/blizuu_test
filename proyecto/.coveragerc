@@ -1,0 +1,11 @@
+[run]
+include = ./*
+branch = True
+
+omit =
+    manage.py
+    proyecto/settings.py
+    proyecto/__init__.py
+    seegithub/migrations/*
+    seegithub/__init__.py
+    seegithub/tests/__init__.py

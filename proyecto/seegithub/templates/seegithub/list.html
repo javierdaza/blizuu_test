@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} Lista {% endblock %}
+
+{% block list-active %}class="active"{% endblock list-active %}
+
+{% block navbar-brand %}
+	<a class="navbar-brand" href="{% url 'index' %}">Lista de la Base de datos</a>
+{% endblock navbar-brand %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Listado de repositorios</h4>
+                        <p class="category">Organización githubtraining</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>GitHub ID</th>
+                            	<th>Nombre</th>
+                            	<th>Fecha creación</th>
+                            </thead>
+                            <tbody>
+                                
+                                {% for item in repoItem %}
+                                <tr>
+	                                <td>{{ item.github_id }}</td>
+	                                <td><a href="{{ item.htme_url }}">{{ item.name }}</a></td>
+	                                <td>{{ item.created_at }}</td>
+                                </tr>
+								{% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block inicio-active %}class="active"{% endblock inicio-active %}
+
+{% block navbar-brand %}
+	<a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+{% endblock navbar-brand %}
+
+{% block content %}
+
+{% if messages %}
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		{% for message in messages %}
+		<div class="alert alert-{{ message.tags }}">
+		    <button type="button" aria-hidden="true" class="close">×</button>
+		    <span><b> {{ message.tags }} - </b> {{ message }}</span>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Listado de repositorios</h4>
+                        <p class="category">Organización githubtraining</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>GitHub ID</th>
+                            	<th>Nombre</th>
+                            	<th>Fecha creación</th>
+                            </thead>
+                            <tbody>
+                                
+                                {% for item in repoItem %}
+                                <tr>
+	                                <td>{{ item.id }}</td>
+	                                <td><a href="{{ item.html_url }}">{{ item.name }}</a></td>
+	                                <td>{{ item.created_at }}</td>
+                                </tr>
+								{% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
