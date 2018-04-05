@@ -1,1 +1,1 @@
-web: gunicorn proyecto.wsgi --log-file -
+web: gunicorn blizuu_test.wsgi --log-file -
