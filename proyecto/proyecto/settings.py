@@ -97,6 +97,8 @@ DATABASES = {
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
+DATABASES['default']['TEST'] = env.db('HEROKU_POSTGRESQL_WHITE_URL', default = 'postgres:///blizuu_test_real')
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
