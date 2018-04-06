@@ -16,14 +16,16 @@ import dj_database_url
 
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default = False)
-if READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
-    env.read_env(str(BASE_DIR.path('.env')))
+ROOT_DIR = environ.Path(__file__) - 3  # (my_awesome_project/config/settings/base.py - 3 = my_awesome_project/)
+APPS_DIR = ROOT_DIR.path('my_awesome_project')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default = False)
+if READ_DOT_ENV_FILE:
+    # OS environment variables take precedence over variables from .env
+    env.read_env(str(ROOT_DIR.path('.env')))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -31,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('DJANGO_SECRET_KEY', default = "12345")
 DEBUG = env('DJANGO_DEBUG', default=True)
 
-ALLOWED_HOSTS = ['blizuu-test.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'blizuu-test.herokuapp.com']
 
 
 # Application definition
